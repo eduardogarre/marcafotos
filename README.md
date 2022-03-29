@@ -1,2 +1,9 @@
-# automarcaagua
-Añade marca de agua a conjunto de imágenes
+# MarcaFotos
+Script para añadir automáticamente una marca de agua a un conjunto de imágenes.
+
+## Dependencias
+`marcafotos` está escrito en `python` empleando la biblioteca `pillow`.
+Instala `pillow` usando el siguiente comando en tu línea de comandos:
+```
+pip install pillow
+```
