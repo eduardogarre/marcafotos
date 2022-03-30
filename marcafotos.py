@@ -24,7 +24,7 @@ def marcafotos(nombre_archivo_foto, nombre_archivo_destino):
     try:
         marca_original = Image.open(nombre_archivo_marca)
     except:
-        print("ERROR: La marca " + nombre_archivo_marca + " no es una imagen válida")
+        print("ERROR: La marca '" + nombre_archivo_marca + "' no es una imagen válida")
         return
 
     marca = marca_original.convert("RGBA")
@@ -46,9 +46,10 @@ def marcafotos(nombre_archivo_foto, nombre_archivo_destino):
     foto_marcada = Image.alpha_composite(foto, máscara)
 
     # Muestro el resultado
-    plt.imshow(foto_marcada)
-    plt.show()
+    #plt.imshow(foto_marcada)
+    #plt.show()
 
+    # Para poder guardar la imagen, tengo que quitar el canal Alfa
     foto_final = foto_marcada.convert("RGB")
     foto_final.save(nombre_archivo_destino)
 
@@ -68,24 +69,26 @@ def recorrecarpeta():
     try:
         listaarchivos = os.listdir(carpeta_origen)
     except FileNotFoundError:
-        print("ERROR: No encuentro la carpeta ./" + carpeta_origen + "")
+        print("ERROR: No encuentro la carpeta './" + carpeta_origen + "'")
         print("Para usar correctamente este programa, pon todas las imágenes originales dentro de una carpeta llamada 'fotos_originales'")
         return
 
     # Borro la carpeta de destino, si es que existía
     try:
         shutil.rmtree(carpeta_marcas)
+        print("INFO: He tenido que borrar './" + carpeta_marcas + "' porque ya existía")
     except FileNotFoundError:
-        print("No he tenido que borrar ./" + carpeta_marcas)
+        a = 42
+        #print("No he tenido que borrar ./" + carpeta_marcas)
     except:
-        print("ERROR: Fallo inesperado al intentar borrar la carpeta ./" + carpeta_marcas + " previa")
+        print("ERROR: Fallo inesperado al intentar borrar la carpeta './" + carpeta_marcas + "' previa")
         return
 
     # Creo la nueva carpeta de destino, ./fotos_marcadas, vacía
     try:
         os.mkdir(carpeta_marcas)
     except:
-        print("ERROR: No he podido crear una nueva carpeta ./" + carpeta_marcas + " vacía, para guardar las fotos marcadas")
+        print("ERROR: No he podido crear una nueva carpeta './" + carpeta_marcas + "' vacía, para guardar las fotos marcadas")
         return
 
     # Recorro la lista de archivos
