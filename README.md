@@ -20,7 +20,15 @@ Ejecuta el siguiente comando en tu terminal:
 python ./marcafotos.py
 ```
 
-Para que la herramienta funcione correctamente, el script `marcafotos.py` debe estar en la misma carpeta que otros 2 archivos:
+## Funcionamiento
 
-- `marca.png`, imagen de la marca de agua.
-- `imagen.png`, imagen que modificar.
+El script espera encontrar en su misma carpeta lo siguiente:
+
+- `marca.png`: imagen con la marca de agua.
+- `fotos_originales`: subcarpeta con todas las fotos pendientes de marcar.
+
+Durante su ejecución, el script recorrerá todos los archivos dentro de `fotos_originales`, y en el caso de que sean imágenes correctas las marcará y las guardará en una nueva carpeta, llamada `fotos_marcadas`.
+
+Una vez el script se haya ejecutado con éxito, encontrarás todas las imágenes marcadas dentro de una nueva carpeta:
+
+- `fotos_marcadas`: contiene todas las imágenes marcadas. Si la carpeta ya existía, será borrada completamente y recreada desde cero.
