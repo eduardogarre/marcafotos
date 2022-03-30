@@ -6,19 +6,10 @@ import shutil
 
 nombre_archivo_marca = "marca.png"
 
-def marcafoto(nombre_archivo_foto, nombre_archivo_destino):
+def construyemáscara(tamaño, transparencia):
 
     tamaño_marca = (150, 150)
     posición_marca = (100, 100)
-
-    # Abro foto
-    try:
-        foto_original = Image.open(nombre_archivo_foto)
-    except:
-        print("ERROR: '" + nombre_archivo_foto + "' no es una foto válida")
-        return
-
-    foto = foto_original.convert("RGBA")
 
     # Abro la marca
     try:
@@ -33,14 +24,30 @@ def marcafoto(nombre_archivo_foto, nombre_archivo_destino):
     marca.thumbnail(tamaño_marca)
 
     # Creo 2 máscara del tamaño de la foto
-    máscara1 = Image.new("RGBA", foto.size)
-    máscara2 = Image.new("RGBA", foto.size)
+    máscara1 = Image.new("RGBA", tamaño)
+    máscara2 = Image.new("RGBA", tamaño)
 
     # Pego la marca sobre la primera máscara
     máscara1.paste(marca, posición_marca)
 
     # Construyo la máscara final, ajustando transparencia
-    máscara = Image.blend(máscara1, máscara2, 0.9)
+    máscara = Image.blend(máscara1, máscara2, transparencia)
+
+    return máscara
+
+def marcafoto(nombre_archivo_foto, nombre_archivo_destino):
+
+    # Abro foto
+    try:
+        foto_original = Image.open(nombre_archivo_foto)
+    except:
+        print("ERROR: '" + nombre_archivo_foto + "' no es una foto válida")
+        return
+
+    foto = foto_original.convert("RGBA")
+    
+    # Construyo la máscara final, ajustando transparencia
+    máscara = construyemáscara(foto.size, 0.25)
 
     # Pego la máscara sobre la foto
     foto_marcada = Image.alpha_composite(foto, máscara)
