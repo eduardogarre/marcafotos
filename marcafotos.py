@@ -1,8 +1,6 @@
 # import all the libraries
 from PIL import Image
 import matplotlib.pyplot as plt
-import matplotlib.image as mpimg
-import numpy as np
 
 def marcafotos():
 

@@ -4,13 +4,13 @@ Script para añadir automáticamente una marca de agua a un conjunto de imágene
 
 ## Dependencias
 
-He escrito `marcafotos` usando la versión 3 de `python`, empleando las bibliotecas `numpy`, `matplotlib` y `pillow`.
+He escrito `marcafotos` usando la versión 3 de `python`, empleando las bibliotecas `matplotlib` y `pillow`.
 
 Puedes instalar `python` siguiendo las instrucciones de la página ofical del proyecto, [Python.org](https://www.python.org).
 
-Instala las dependencias `numpy`, `matplotlib` y `pillow` ejecutando el siguiente comando en tu terminal:
+Instala las dependencias `matplotlib` y `pillow` ejecutando el siguiente comando en tu terminal:
 ```
-pip install numpy matplotlib pillow
+pip install matplotlib pillow
 ```
 
 ## Uso
