@@ -6,9 +6,9 @@ import shutil
 
 nombre_archivo_marca = "marca.png"
 
-def marcafotos(nombre_archivo_foto, nombre_archivo_destino):
+def marcafoto(nombre_archivo_foto, nombre_archivo_destino):
 
-    tamaño_marca = (300, 100)
+    tamaño_marca = (150, 150)
     posición_marca = (100, 100)
 
     # Abro foto
@@ -46,8 +46,8 @@ def marcafotos(nombre_archivo_foto, nombre_archivo_destino):
     foto_marcada = Image.alpha_composite(foto, máscara)
 
     # Muestro el resultado
-    #plt.imshow(foto_marcada)
-    #plt.show()
+    plt.imshow(foto_marcada)
+    plt.show()
 
     # Para poder guardar la imagen, tengo que quitar el canal Alfa
     foto_final = foto_marcada.convert("RGB")
@@ -98,7 +98,7 @@ def recorrecarpeta():
         archivo_marcado = os.path.join(carpeta_marcas, nombrearchivo)
         # Compruebo que el archivo original es realmente un archivo, y no una subcarpeta
         if os.path.isfile(archivo_original):
-            marcafotos(archivo_original, archivo_marcado)
+            marcafoto(archivo_original, archivo_marcado)
 
 if __name__ == "__main__":
     recorrecarpeta()
