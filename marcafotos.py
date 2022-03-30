@@ -8,9 +8,6 @@ nombre_archivo_marca = "marca.png"
 
 def construyemáscara(tamaño, transparencia):
 
-    tamaño_marca = (150, 150)
-    posición_marca = (100, 100)
-
     # Abro la marca
     try:
         marca_original = Image.open(nombre_archivo_marca)
@@ -20,8 +17,12 @@ def construyemáscara(tamaño, transparencia):
 
     marca = marca_original.convert("RGBA")
 
+    # Obtengo tamaño máximo de la marca de agua
+    tamaño_marca = (int(tamaño[0]/4), int(tamaño[1]/9))
     # Cambio el tamaño de la marca
     marca.thumbnail(tamaño_marca)
+    # Calculo posición de la marca
+    posición_marca = (int(tamaño[0] - marca.size[0]*1.33), int(tamaño[1] - marca.size[1]*1.75))
 
     # Creo 2 máscara del tamaño de la foto
     máscara1 = Image.new("RGBA", tamaño)
@@ -47,14 +48,14 @@ def marcafoto(nombre_archivo_foto, nombre_archivo_destino):
     foto = foto_original.convert("RGBA")
     
     # Construyo la máscara final, ajustando transparencia
-    máscara = construyemáscara(foto.size, 0.25)
+    máscara = construyemáscara(foto.size, 0.4)
 
     # Pego la máscara sobre la foto
     foto_marcada = Image.alpha_composite(foto, máscara)
 
     # Muestro el resultado
-    plt.imshow(foto_marcada)
-    plt.show()
+    #plt.imshow(foto_marcada)
+    #plt.show()
 
     # Para poder guardar la imagen, tengo que quitar el canal Alfa
     foto_final = foto_marcada.convert("RGB")
