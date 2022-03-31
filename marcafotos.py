@@ -1,4 +1,4 @@
-# import all the libraries
+#!/usr/bin/env python
 from PIL import Image
 import matplotlib.pyplot as plt
 import os
