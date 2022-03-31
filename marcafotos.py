@@ -35,7 +35,7 @@ def marcasdiagonales(tamaño, marca):
     for i in range(11):
         for j in range(11):
             # Calculo posición de la marca
-            posición_marca = (int(tamaño[0]*(-0.125) + marca.size[0]*(separación+1)*j - marca.size[0]*separación*i), int(marca.size[0]*separación*i))
+            posición_marca = (int(tamaño[0]*(-0.125) + marca.size[0]*(separación+0.5)*j - marca.size[0]*separación*i), int(marca.size[0]*separación*i))
             # Pego la marca sobre la primera máscara
             máscaratmp.paste(marca, posición_marca)
 
