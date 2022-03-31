@@ -22,7 +22,26 @@ def marcaalpie(tamaño, marca):
     return máscara
 
 def marcasdiagonales(tamaño, marca):
-    yield
+    # Obtengo tamaño máximo de la marca de agua
+    tamaño_marca = (int(tamaño[0]/8), int(tamaño[1]/20))
+    # Cambio el tamaño de la marca
+    marca.thumbnail(tamaño_marca)
+    # Creo máscara del tamaño de la foto
+    máscara = Image.new("RGBA", tamaño)
+    # Creo máscara intermedia, el doble del tamaño
+    máscaratmp = Image.new("RGBA", (int(tamaño[0]*1.5), int(tamaño[1]*1.5)))
+
+    for i in range(11):
+        for j in range(11):
+            # Calculo posición de la marca
+            posición_marca = (int(tamaño[0]*(-0.125) + marca.size[0]*2*j - marca.size[0]*1.5*i), int(marca.size[0]*1.5*i))
+            # Pego la marca sobre la primera máscara
+            máscaratmp.paste(marca, posición_marca)
+
+    máscara45 = máscaratmp.rotate(45, expand=True)
+    
+    máscara.paste(máscara45, (int(-tamaño[1]/2), int(-tamaño[1]/1)))
+    return máscara
 
 def marcacentrada(tamaño, marca):
     # Obtengo tamaño máximo de la marca de agua
