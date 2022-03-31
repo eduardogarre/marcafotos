@@ -3,11 +3,41 @@ from PIL import Image
 import matplotlib.pyplot as plt
 import os
 import shutil
+import sys
 
+diseño_marca = "alpie"
 nombre_archivo_marca = "marca.png"
 
-def construyemáscara(tamaño, transparencia):
+def marcaalpie(tamaño, marca):
+    # Obtengo tamaño máximo de la marca de agua
+    tamaño_marca = (int(tamaño[0]/4), int(tamaño[1]/9))
+    # Cambio el tamaño de la marca
+    marca.thumbnail(tamaño_marca)
+    # Calculo posición de la marca
+    posición_marca = (int(tamaño[0] - marca.size[0]*1.33), int(tamaño[1] - marca.size[1]*1.75))
+    # Creo máscara del tamaño de la foto
+    máscara = Image.new("RGBA", tamaño)
+    # Pego la marca sobre la primera máscara
+    máscara.paste(marca, posición_marca)
+    return máscara
 
+def marcasdiagonales(tamaño, marca):
+    yield
+
+def marcacentrada(tamaño, marca):
+    # Obtengo tamaño máximo de la marca de agua
+    tamaño_marca = (int(tamaño[0]*0.666), int(tamaño[1]*0.333))
+    # Cambio el tamaño de la marca
+    marca.thumbnail(tamaño_marca)
+    # Calculo posición de la marca
+    posición_marca = (int(tamaño[0]*0.5 - marca.size[0]*0.5), int(tamaño[1]*0.55 - marca.size[1]*0.5))
+    # Creo máscara del tamaño de la foto
+    máscara = Image.new("RGBA", tamaño)
+    # Pego la marca sobre la primera máscara
+    máscara.paste(marca, posición_marca)
+    return máscara
+
+def construyemáscara(tamaño):
     # Abro la marca
     try:
         marca_original = Image.open(nombre_archivo_marca)
@@ -17,19 +47,21 @@ def construyemáscara(tamaño, transparencia):
 
     marca = marca_original.convert("RGBA")
 
-    # Obtengo tamaño máximo de la marca de agua
-    tamaño_marca = (int(tamaño[0]/4), int(tamaño[1]/9))
-    # Cambio el tamaño de la marca
-    marca.thumbnail(tamaño_marca)
-    # Calculo posición de la marca
-    posición_marca = (int(tamaño[0] - marca.size[0]*1.33), int(tamaño[1] - marca.size[1]*1.75))
-
-    # Creo 2 máscara del tamaño de la foto
+    # Creo máscara del tamaño de la foto
     máscara1 = Image.new("RGBA", tamaño)
-    máscara2 = Image.new("RGBA", tamaño)
+    transparencia = 0.6
 
-    # Pego la marca sobre la primera máscara
-    máscara1.paste(marca, posición_marca)
+    # Escojo qué tipo de máscara usar
+    match diseño_marca:
+        case "alpie":
+            máscara2 = marcaalpie(tamaño, marca)
+            transparencia = 0.5
+        case "centrado":
+            máscara2 = marcacentrada(tamaño, marca)
+            transparencia = 0.25
+        case "diagonal":
+            máscara2 = marcasdiagonales(tamaño, marca)
+            transparencia = 0.333
 
     # Construyo la máscara final, ajustando transparencia
     máscara = Image.blend(máscara1, máscara2, transparencia)
@@ -37,7 +69,6 @@ def construyemáscara(tamaño, transparencia):
     return máscara
 
 def marcafoto(nombre_archivo_foto, nombre_archivo_destino):
-
     # Abro foto
     try:
         foto_original = Image.open(nombre_archivo_foto)
@@ -48,7 +79,7 @@ def marcafoto(nombre_archivo_foto, nombre_archivo_destino):
     foto = foto_original.convert("RGBA")
     
     # Construyo la máscara final, ajustando transparencia
-    máscara = construyemáscara(foto.size, 0.4)
+    máscara = construyemáscara(foto.size)
 
     # Pego la máscara sobre la foto
     foto_marcada = Image.alpha_composite(foto, máscara)
@@ -109,4 +140,21 @@ def recorrecarpeta():
             marcafoto(archivo_original, archivo_marcado)
 
 if __name__ == "__main__":
+    if len(sys.argv) == 1:
+        diseño_marca = "alpie"
+    elif len(sys.argv) == 2:
+        match sys.argv[1]:
+            case "alpie":
+                diseño_marca = "alpie"
+            case "centrado":
+                diseño_marca = "centrado"
+            case "diagonal":
+                diseño_marca = "diagonal"
+            case _:
+                print("ERROR: No reconozco el diseño que quieres marcar")
+                exit()
+    else:
+        print("ERROR: Intentas ejecutar el script con demasiados argumentos")
+        exit()
+        
     recorrecarpeta()
