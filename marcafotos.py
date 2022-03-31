@@ -22,7 +22,7 @@ def marcaalpie(tamaño, marca):
     return máscara
 
 def marcasdiagonales(tamaño, marca):
-    separación = 2.25
+    separación = 2.0
     # Obtengo tamaño máximo de la marca de agua
     tamaño_marca = (int(tamaño[0]/8), int(tamaño[1]/20))
     # Cambio el tamaño de la marca
@@ -35,7 +35,7 @@ def marcasdiagonales(tamaño, marca):
     for i in range(11):
         for j in range(11):
             # Calculo posición de la marca
-            posición_marca = (int(tamaño[0]*(-0.125) + marca.size[0]*separación*j - marca.size[0]*separación*i), int(marca.size[0]*separación*i))
+            posición_marca = (int(tamaño[0]*(-0.125) + marca.size[0]*(separación+1)*j - marca.size[0]*separación*i), int(marca.size[0]*separación*i))
             # Pego la marca sobre la primera máscara
             máscaratmp.paste(marca, posición_marca)
 
