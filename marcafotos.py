@@ -7,12 +7,11 @@ import sys
 
 uso = """
 Uso:
-    python marcafotos.py
-    python marcafotos.py DISEÑO
+    python marcafotos.py [DISEÑO]
 
 Opciones:
-    DISEÑO  Escoge el diseño con el que sobreimpresionar la marca de agua.
-            Sustituye 'DISEÑO' por una palabra de entre las 3 siguientes:
+    DISEÑO  Opcional. Escoge el diseño con el que sobreimpresionar la marca de
+            agua. Sustituye 'DISEÑO' por una palabra de entre las 3 siguientes:
             - alpie: Una marca abajo a la derecha.
             - centrado: Una marca grande y centrada.
             - diagonal: Múltiples hileras de marcas en diagonal.

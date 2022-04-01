@@ -4,20 +4,50 @@ Script para añadir automáticamente una marca de agua a un conjunto de imágene
 
 ## Dependencias
 
-He escrito `marcafotos` usando la versión 3 de `python`, empleando las bibliotecas `matplotlib` y `pillow`.
+He escrito `marcafotos` usando `Python 3.10`, empleando las bibliotecas `matplotlib` y `pillow`.
 
-Puedes instalar `python` siguiendo las instrucciones de la página ofical del proyecto, [Python.org](https://www.python.org).
+Instala `Python` siguiendo las instrucciones de la página ofical del proyecto, [Python.org](https://www.python.org).
 
 Instala las dependencias `matplotlib` y `pillow` ejecutando el siguiente comando en tu terminal:
-```
+
+```sh
 pip install matplotlib pillow
 ```
+
+## Instalación y preparativos
+
+1) Descarga el archivo `marcafotos.py` de este repositorio, y guárdalo en una carpeta de tu sistema.
+2) En la misma carpeta deberás colocar una foto con la marca de agua, con el nombre `marca.png`.
+3) Por último crea también una subcarpeta vacía llamada `fotos_originales`, donde debes colocar todas las fotos que hay que marcar.
 
 ## Uso
 
 Ejecuta el siguiente comando en tu terminal:
+
+```sh
+python marcafotos.py
 ```
-python ./marcafotos.py
+
+Manual de uso para el terminal:
+
+```sh
+Uso:
+    python marcafotos.py [DISEÑO]
+
+Opciones:
+    DISEÑO  Opcional. Escoge el diseño con el que sobreimpresionar la marca de
+            agua. Sustituye 'DISEÑO' por una palabra de entre las 3 siguientes:
+            - alpie: Una marca abajo a la derecha.
+            - centrado: Una marca grande y centrada.
+            - diagonal: Múltiples hileras de marcas en diagonal.
+            Si no se define ningún diseño, de forma predeterminada se escogerá
+            el diseño 'diagonal'.
+
+Ejemplos:
+    python marcafotos.py
+    python marcafotos.py alpie
+    python marcafotos.py centrado
+    python marcafotos.py diagonal
 ```
 
 ## Funcionamiento
