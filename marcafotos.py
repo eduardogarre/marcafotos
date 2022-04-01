@@ -5,6 +5,27 @@ import os
 import shutil
 import sys
 
+uso = """
+Uso:
+    python marcafotos.py
+    python marcafotos.py DISEÑO
+
+Opciones:
+    DISEÑO  Escoge el diseño con el que sobreimpresionar la marca de agua.
+            Sustituye 'DISEÑO' por una palabra de entre las 3 siguientes:
+            - alpie: Una marca abajo a la derecha.
+            - centrado: Una marca grande y centrada.
+            - diagonal: Múltiples hileras de marcas en diagonal.
+            Si no se define ningún diseño, de forma predeterminada se escogerá
+            el diseño 'diagonal'.
+
+Ejemplos:
+    python marcafotos.py
+    python marcafotos.py alpie
+    python marcafotos.py centrado
+    python marcafotos.py diagonal
+"""
+
 diseño_marca = "alpie"
 nombre_archivo_marca = "marca.png"
 
@@ -135,7 +156,7 @@ def recorrecarpeta():
     # Borro la carpeta de destino, si es que existía
     try:
         shutil.rmtree(carpeta_marcas)
-        print("INFO: He tenido que borrar './" + carpeta_marcas + "' porque ya existía")
+        #print("INFO: He tenido que borrar './" + carpeta_marcas + "' porque ya existía")
     except FileNotFoundError:
         a = 42
         #print("No he tenido que borrar ./" + carpeta_marcas)
@@ -161,7 +182,7 @@ def recorrecarpeta():
 
 if __name__ == "__main__":
     if len(sys.argv) == 1:
-        diseño_marca = "alpie"
+        diseño_marca = "diagonal"
     elif len(sys.argv) == 2:
         match sys.argv[1]:
             case "alpie":
@@ -171,10 +192,12 @@ if __name__ == "__main__":
             case "diagonal":
                 diseño_marca = "diagonal"
             case _:
-                print("ERROR: No reconozco el diseño que quieres marcar")
+                print("ERROR: No reconozco el diseño '" + sys.argv[1] + "'")
+                print(uso)
                 exit()
     else:
         print("ERROR: Intentas ejecutar el script con demasiados argumentos")
+        print(uso)
         exit()
         
     recorrecarpeta()
