@@ -22,13 +22,14 @@ pip install matplotlib pillow
 
 ## Uso
 
+Abre el terminal de tu sistema y navega hasta la carpeta donde hayas colocado `marcafotos.py`.
 Ejecuta el siguiente comando en tu terminal:
 
 ```sh
 python marcafotos.py
 ```
 
-Manual de uso para el terminal:
+Este es el manual completo de uso para el terminal:
 
 ```sh
 Uso:
@@ -62,3 +63,7 @@ Durante su ejecución, el script recorrerá todos los archivos dentro de `fotos_
 Una vez el script se haya ejecutado con éxito, encontrarás todas las imágenes marcadas dentro de una nueva carpeta:
 
 - `fotos_marcadas`: contiene todas las imágenes marcadas. Si la carpeta ya existía, será borrada completamente y recreada desde cero.
+
+## Licencia
+
+Proyecto publicado bajo la licencia de software libre `MIT`. Más información en el archivo `LICENSE` de este repositorio.
