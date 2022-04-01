@@ -158,8 +158,8 @@ def recorrecarpeta():
         shutil.rmtree(carpeta_marcas)
         #print("INFO: He tenido que borrar './" + carpeta_marcas + "' porque ya existía")
     except FileNotFoundError:
-        a = 42
         #print("No he tenido que borrar ./" + carpeta_marcas)
+        pass
     except:
         print("ERROR: Fallo inesperado al intentar borrar la carpeta './" + carpeta_marcas + "' previa")
         return
