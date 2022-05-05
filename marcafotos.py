@@ -13,6 +13,7 @@ Opciones:
     DISEÑO  Opcional. Escoge el diseño con el que sobreimpresionar la marca de
             agua. Sustituye 'DISEÑO' por una palabra de entre las 3 siguientes:
             - alpie: Una marca abajo a la derecha.
+            - alpie2: Una marca con texto azul abajo a la derecha.
             - centrado: Una marca grande y centrada.
             - diagonal: Múltiples hileras de marcas en diagonal.
             Si no se define ningún diseño, de forma predeterminada se escogerá
@@ -21,16 +22,30 @@ Opciones:
 Ejemplos:
     python marcafotos.py
     python marcafotos.py alpie
+    python marcafotos.py alpie2
     python marcafotos.py centrado
     python marcafotos.py diagonal
 """
 
-diseño_marca = "alpie"
+diseño_marca = "diagonal"
 nombre_archivo_marca = "marca.png"
 
 def marcaalpie(tamaño, marca):
     # Obtengo tamaño máximo de la marca de agua
     tamaño_marca = (int(tamaño[0]/4), int(tamaño[1]/9))
+    # Cambio el tamaño de la marca
+    marca.thumbnail(tamaño_marca)
+    # Calculo posición de la marca
+    posición_marca = (int(tamaño[0] - marca.size[0]*1.33), int(tamaño[1] - marca.size[1]*1.75))
+    # Creo máscara del tamaño de la foto
+    máscara = Image.new("RGBA", tamaño)
+    # Pego la marca sobre la primera máscara
+    máscara.paste(marca, posición_marca)
+    return máscara
+
+def marcaalpie2(tamaño, marca):
+    # Obtengo tamaño máximo de la marca de agua
+    tamaño_marca = (int(tamaño[0]/2.5), int(tamaño[1]/9))
     # Cambio el tamaño de la marca
     marca.thumbnail(tamaño_marca)
     # Calculo posición de la marca
@@ -96,6 +111,9 @@ def construyemáscara(tamaño):
         case "alpie":
             máscara2 = marcaalpie(tamaño, marca)
             transparencia = 0.5
+        case "alpie2":
+            máscara2 = marcaalpie2(tamaño, marca)
+            transparencia = 1
         case "centrado":
             máscara2 = marcacentrada(tamaño, marca)
             transparencia = 0.25
@@ -186,6 +204,9 @@ if __name__ == "__main__":
         match sys.argv[1]:
             case "alpie":
                 diseño_marca = "alpie"
+            case "alpie2":
+                diseño_marca = "alpie2"
+                nombre_archivo_marca = "marca2.png"
             case "centrado":
                 diseño_marca = "centrado"
             case "diagonal":
