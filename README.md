@@ -20,16 +20,46 @@ pip install matplotlib pillow
 2) En la misma carpeta deberás colocar una foto con la marca de agua, con el nombre `marca.png`.
 3) Por último crea también una subcarpeta vacía llamada `fotos_originales`, donde debes colocar todas las fotos que hay que marcar.
 
+## Problemas frecuentes
+
+### "Variable PATH" en sistemas operativos Windows
+
+Para que el terminal pueda ejecutar los programas de `python`, debes incluir `python` en una lista. Para ello recuerda marcar la opción correspondiente al principio de la instalación:
+
+![Opción PATH](https://docs.blender.org/manual/es/2.79/_images/about_contribute_install_windows_installer.png)
+
+### Python 3
+Dado que existen varias versiones del lenguaje `python` y estoy empleando la versión 3, en ocasiones `python` se instala añadiendo el número `3` al final del nombre de todas sus herramientas. Eso significa que para poder usar los comandos `python` y `pip` desde el terminal es posible que tengas que ejecutarlos escribiendo `python3` y `pip3`. Por ejemplo `pip3 install pillow` o `python marcafotos.py alpie2`.
+
 ## Uso
 
-Abre el terminal de tu sistema y navega hasta la carpeta donde hayas colocado `marcafotos.py`.
-Ejecuta el siguiente comando en tu terminal:
+Abre el terminal de tu sistema y navega hasta la carpeta donde hayas colocado `marcafotos.py`. Para navegar hasta esa carpeta en tu
+terminal, normalmente tienes que usar el comando `cd`.
+Cuando ya estés en la carpeta de `marcafotos.py`, ejecuta el siguiente comando en tu terminal:
 
 ```sh
 python marcafotos.py
 ```
 
-Este es el manual completo de uso para el terminal:
+Esto colocará el diseño predeterminado (marcas de agua diagonales) a todas las fotos.
+
+## Escoge entre varios diseños
+
+Existen varios diseños para las diferentes necesidades. Por ejemplo existe un diseño con un logo al pie, otro diseño con un texto
+al pie, un logo centrado... Para poder seleccionar un diseño diferente al predeterminado, escribe el nombre del diseño al final
+del comando:
+```sh
+python marcafotos.py [DISEÑO]
+```
+
+Por ejemplo:
+```sh
+python marcafotos.py alpie2
+```
+
+## Manual
+
+Aquí tienes el manual completo de uso para el terminal, con la lista de todos los diseños disponibles
 
 ```sh
 Uso:
