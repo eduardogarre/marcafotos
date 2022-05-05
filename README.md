@@ -24,7 +24,7 @@ pip install matplotlib pillow
 
 ### "Variable PATH" en sistemas operativos Windows
 
-Para que el terminal pueda ejecutar los programas de `python`, debes incluir `python` en una lista. Para ello recuerda marcar la opción correspondiente al principio de la instalación:
+El terminal usa una lista de carpetas para encontrar los programas/comandos que quieres ejecutar. Para que puedas usar `python`, debes incluir `python` en esa lista. Marcar la opción correspondiente al principio de la instalación:
 
 ![Opción PATH](https://docs.blender.org/manual/es/2.79/_images/about_contribute_install_windows_installer.png)
 
