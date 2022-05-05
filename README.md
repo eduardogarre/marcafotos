@@ -16,8 +16,8 @@ pip install pillow
 
 ## Instalación y preparativos
 
-1) Descarga el archivo `marcafotos.py` de este repositorio, y guárdalo en una carpeta de tu sistema.
-2) En la misma carpeta deberás colocar una foto con la marca de agua, con el nombre `marca.png`.
+1) Descarga el archivo `marcafotos.py` de este repositorio y guárdalo en una carpeta de tu sistema.
+2) En la misma carpeta debe colocarse una foto con la marca de agua, con el nombre `marca.png`. En el repositorio ya existen 2 imagenes que se corresponden con las marcas de agua propias del Grupo de Trabajo de Ecografía de SEMERGEN, por lo que los miembros de este grupo no necesitamos cambiar las fotos.
 3) Por último crea también una subcarpeta vacía llamada `fotos_originales`, donde debes colocar todas las fotos que hay que marcar.
 
 ## Problemas frecuentes
