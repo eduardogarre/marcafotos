@@ -39,6 +39,7 @@ Opciones:
     DISEÑO  Opcional. Escoge el diseño con el que sobreimpresionar la marca de
             agua. Sustituye 'DISEÑO' por una palabra de entre las 3 siguientes:
             - alpie: Una marca abajo a la derecha.
+            - alpie2: Una marca con texto azul abajo a la derecha.
             - centrado: Una marca grande y centrada.
             - diagonal: Múltiples hileras de marcas en diagonal.
             Si no se define ningún diseño, de forma predeterminada se escogerá
@@ -47,6 +48,7 @@ Opciones:
 Ejemplos:
     python marcafotos.py
     python marcafotos.py alpie
+    python marcafotos.py alpie2
     python marcafotos.py centrado
     python marcafotos.py diagonal
 ```
