@@ -30,7 +30,7 @@ El terminal usa una lista de carpetas para encontrar los programas/comandos que 
 
 ### Python 3
 
-Dado que existen varias versiones del lenguaje `python` y estoy empleando la versión 3, en ocasiones `python` se instala añadiendo el número `3` al final del nombre de todas sus herramientas. Eso significa que para poder usar los comandos `python` y `pip` desde el terminal es posible que tengas que ejecutarlos escribiendo `python3` y `pip3`. Por ejemplo `pip3 install pillow` o `python marcafotos.py alpie2`.
+Dado que existen varias versiones del lenguaje `python` y estoy empleando la versión 3, en ocasiones `python` se instala añadiendo el número `3` al final del nombre de todas sus herramientas. Eso significa que para poder usar los comandos `python` y `pip` desde el terminal es posible que tengas que ejecutarlos escribiendo `python3` y `pip3`. Por ejemplo `pip3 install pillow` o `python3 marcafotos.py alpie2`.
 
 ## Uso
 
